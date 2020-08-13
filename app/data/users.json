@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "email": "admin@oh-my-merchant.xyz",
+    "username": "admin",
+    "password": "admin@oh-my-merchant.xyz"
+  },
+  {
+    "id": 2,
+    "email": "root@oh-my-merchant.xyz",
+    "username": "root",
+    "password": "root@oh-myf-merchant.xyz"
+  }
+]
