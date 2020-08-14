@@ -40,7 +40,7 @@ module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
     // in case of you wanna respond with image
     // res.type('png').status(200).end(Buffer.from(qrImage, 'base64'))
   } catch (err) {
-    debug('An error occurs')
+    debug('An error occurs', err)
     const response = err.response
     res.status(response.status).send({ ...response.data })
   }

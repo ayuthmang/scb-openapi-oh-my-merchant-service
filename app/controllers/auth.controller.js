@@ -52,7 +52,7 @@ module.exports.login = async function login(req, res) {
     }
     res.status(scbAPIResponse.status).send(response)
   } catch (err) {
-    debug('An error occurs')
+    debug('An error occurs', err)
     const response = err.response
     res.status(response.status).send({ ...response.data })
   }
