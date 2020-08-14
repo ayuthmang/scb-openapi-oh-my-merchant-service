@@ -20,33 +20,21 @@ app.use(function (req, res, next) {
   next(createError(HttpStatus.BAD_REQUEST))
 })
 
-// TODO: error development
 // error handler
 app.use(function (err, req, res, next) {
-  if (err) {
-    return res.status(err.status).send({
-      status: {
-        code: 9990,
-        description: 'Service not available, or currently under maintenance',
-      },
-    })
-  }
-
+  const isEnvProduction = process.env.NODE_ENV === 'production'
   // default error
-  res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
+  const response = {
     status: {
       code: 9990,
       description: 'Service not available, or currently under maintenance',
     },
-  })
-
-  // // set locals, only providing error in development
-  // res.locals.message = err.message
-  // res.locals.error = req.app.get('env') === 'development' ? err : {}
-
-  // // render the error page
-  // res.status(err.status || 500)
-  // // res.render('error')
+  }
+  // set locals, only providing error in development
+  if (!isEnvProduction) {
+    response['error'] = err.stack
+  }
+  res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(response)
 })
 
 module.exports = app

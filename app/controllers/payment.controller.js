@@ -6,9 +6,8 @@ const debug = require('debug')(
 )
 
 module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
-  // TODO: validate body, headers
   debug('Got a POST request from client')
-  const reqHeaders = req.headers // surely we have an authorization header
+  const reqHeaders = req.headers // we surely have an authorization header
   const reqBody = req.body
 
   // https://developer.scb/#/documents/api-reference-index/qr-payments/post-qrcode-create.html
@@ -23,7 +22,7 @@ module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
         amount: reqBody.amount,
         ref1: '1234567890',
         ref2: '1234567890',
-        ref3: reqBody.ref3,
+        ref3: reqBody.ref3, // must be [AZ09], up to 20 length
       },
       {
         headers: {
@@ -41,10 +40,7 @@ module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
     // in case of you wanna respond with image
     // res.type('png').status(200).end(Buffer.from(qrImage, 'base64'))
   } catch (err) {
-    debug(
-      'An error occurs from POST /partners/sandbox/v1/payment/qrcode/create',
-      err
-    )
+    debug('An error occurs')
     const response = err.response
     res.status(response.status).send({ ...response.data })
   }
