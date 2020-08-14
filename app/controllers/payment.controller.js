@@ -1,9 +1,10 @@
-const scbAPIInstance = require('../utils/scb-api.instance')
 const { v4: uuidv4 } = require('uuid')
-const scbApiConfig = require('../../config/scb-api.config')
 const debug = require('debug')(
   'scb-openapi-oh-my-merchant-service:payment.controller'
 )
+
+const scbAPIInstance = require('../utils/scb-api.instance')
+const scbApiConfig = require('../../config/scb-api.config')
 
 module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
   debug('Got a POST request from client')

@@ -1,5 +1,6 @@
 const axios = require('axios').default
 const { v4: uuidv4 } = require('uuid')
+
 const { API_KEY, API_SECRET, BASE_URL } = require('../../config/scb-api.config')
 
 const instance = axios.create({

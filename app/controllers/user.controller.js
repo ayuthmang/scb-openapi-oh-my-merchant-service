@@ -1,9 +1,9 @@
 const HttpStatus = require('http-status-codes')
-
-const userService = require('../services/user.service')
 const debug = require('debug')(
   'scb-openapi-oh-my-merchant-service:user.controller'
 )
+
+const userService = require('../services/user.service')
 
 module.exports.findByUsername = (req, res) => {
   const usernameParam = req.params.username
