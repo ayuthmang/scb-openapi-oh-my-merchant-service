@@ -4,7 +4,7 @@ const debug = require('debug')(
 )
 
 const scbAPIInstance = require('../utils/scb-api.instance')
-const scbApiConfig = require('../../config/scb-api.config')
+const scbAPIConfig = require('../../config/scb-api.config')
 
 module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
   debug('Got a POST request from client')
@@ -19,7 +19,7 @@ module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
       {
         qrType: 'PP',
         ppType: 'BILLERID',
-        ppId: scbApiConfig.BILLER_ID,
+        ppId: scbAPIConfig.BILLER_ID,
         amount: reqBody.amount,
         ref1: '1234567890',
         ref2: '1234567890',
