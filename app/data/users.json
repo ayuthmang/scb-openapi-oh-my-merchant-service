@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "email": "admin@oh-my-merchant.xyz",
+    "email": "admin@xyz.com",
     "username": "admin",
-    "password": "admin@oh-my-merchant.xyz"
+    "password": "admin@xyz.com"
   },
   {
     "id": 2,
-    "email": "root@oh-my-merchant.xyz",
-    "username": "root",
-    "password": "root@oh-myf-merchant.xyz"
+    "email": "gique@xyz.com",
+    "username": "gique",
+    "password": "giquenaruk"
   }
 ]
