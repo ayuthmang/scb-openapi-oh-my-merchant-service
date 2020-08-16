@@ -24,8 +24,6 @@ module.exports.login = async function login(req, res) {
     return
   }
 
-  const user = findByEmail(email)
-  delete user.password
   try {
     debug('POST to /partners/sandbox/v1/oauth/token')
     const scbAPIResponse = await scbAPIInstance.post(
@@ -43,6 +41,12 @@ module.exports.login = async function login(req, res) {
     debug('Got a response data from /partners/sandbox/v1/oauth/token')
     const responseData = scbAPIResponse.data
     debug('Send all field data back to client')
+    const user = findByEmail(email)
+    // Avoid mutate the users object
+    // and returns an object without password.
+    const clonedUser = Object.assign({}, user)
+    delete clonedUser.password
+
     const response = {
       status: { ...responseData.status },
       data: {

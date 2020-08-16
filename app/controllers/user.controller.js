@@ -20,15 +20,18 @@ module.exports.findByUsername = (req, res) => {
   debug('findByUsername `username`:', usernameParam)
   const user = userService.findByUsername(usernameParam)
   if (user) {
-    // Removes user's password!
-    delete user.password
+    // Avoid mutate the users object
+    // and returns an object without password.
+    const clonedUser = Object.assign({}, user)
+    delete clonedUser.password
+
     const response = {
       status: {
         code: 1000,
         description: 'Success',
       },
       data: {
-        ...user,
+        ...clonedUser,
       },
     }
     res.status(HttpStatus.OK).send(response)
