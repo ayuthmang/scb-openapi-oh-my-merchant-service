@@ -17,6 +17,7 @@
     "http-status-codes": "^1.4.0",
     "morgan": "^1.10.0",
     "safe-compare": "^1.1.4",
+    "socket.io": "^2.3.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {

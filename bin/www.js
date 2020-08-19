@@ -22,6 +22,14 @@ app.set('port', port);
 const server = http.createServer(app);
 
 /**
+ * Create socket server.
+ */
+const { config: socketIOConfig, initSocketServer } = require('../lib/socket')
+const socketServer = require('socket.io')(server, socketIOConfig);
+initSocketServer(socketServer)
+
+
+/**
  * Listen on provided port, on all network interfaces.
  */
 
@@ -58,9 +66,7 @@ function onError(error) {
     throw error;
   }
 
-  let bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  let bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -83,8 +89,6 @@ function onError(error) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }

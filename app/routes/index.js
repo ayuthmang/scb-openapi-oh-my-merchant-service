@@ -6,8 +6,9 @@ const authController = require('../controllers/auth.controller')
 const paymentController = require('../controllers/payment.controller')
 const userController = require('../controllers/user.controller')
 
-// authen route
+// public routes
 router.post('/auth/login', authController.login)
+router.post('/payment/callback', paymentController.paymentSucceedCallback)
 
 // protect routes
 router.use(authMiddleware)

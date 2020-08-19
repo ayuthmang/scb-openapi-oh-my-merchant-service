@@ -3,9 +3,16 @@ const debug = require('debug')(
   'scb-openapi-oh-my-merchant-service:payment.controller'
 )
 
+const socket = require('../../lib/socket')
 const scbAPIInstance = require('../utils/scb-api.instance')
 const scbAPIConfig = require('../../config/scb-api.config')
 
+/**
+ * TBD:
+ *
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ */
 module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
   debug('Got a POST request from client')
   const reqHeaders = req.headers // we surely have an authorization header
@@ -45,4 +52,20 @@ module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
     const response = err.response
     res.status(response.status).send({ ...response.data })
   }
+}
+
+/**
+ * Handle payment callback from scb api and pass forward all through client.
+ *
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ */
+module.exports.paymentSucceedCallback = async function(req, res) {
+  // received body from scb api
+  debug('received request from scb api')
+  const body = req.body;
+
+  // broadcast to client
+  debug('broadcasting to subscribers')
+  socket.broadcastPaymentSucceed(body)
 }
