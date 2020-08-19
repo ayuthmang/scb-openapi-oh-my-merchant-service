@@ -13,7 +13,7 @@ const scbAPIConfig = require('../../config/scb-api.config')
  * @param {Express.Request} req
  * @param {Express.Response} res
  */
-module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
+module.exports.qrcodeCreate = async (req, res) => {
   debug('Got a POST request from client')
   const reqHeaders = req.headers // we surely have an authorization header
   const reqBody = req.body
@@ -60,7 +60,7 @@ module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
  * @param {Express.Request} req
  * @param {Express.Response} res
  */
-module.exports.paymentSucceedCallback = async function (req, res) {
+module.exports.paymentSucceedCallback = async (req, res) => {
   // received body from scb api
   debug('received request from scb api')
   const body = req.body
