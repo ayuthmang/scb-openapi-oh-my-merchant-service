@@ -66,6 +66,10 @@ module.exports.paymentSucceedCallback = async function(req, res) {
   const body = req.body;
 
   // broadcast to client
-  debug('broadcasting to subscribers')
+  debug('calling socket to broadcast request body to subscribers')
   socket.broadcastPaymentSucceed(body)
+
+  // To avoiding the request timeout on gateway,
+  // we end the response of callback.
+  res.end()
 }
