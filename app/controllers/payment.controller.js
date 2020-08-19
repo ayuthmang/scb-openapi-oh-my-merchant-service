@@ -60,16 +60,17 @@ module.exports.qrcodeCreate = async function qrcodeCreate(req, res) {
  * @param {Express.Request} req
  * @param {Express.Response} res
  */
-module.exports.paymentSucceedCallback = async function(req, res) {
+module.exports.paymentSucceedCallback = async function (req, res) {
   // received body from scb api
   debug('received request from scb api')
-  const body = req.body;
+  const body = req.body
+
+  // To avoiding the request timeout on the gateway, we end the response of callback.
+  // We need to respond that we're done for you.
+  debug('ending response from scb api payment succeed callback')
+  res.end()
 
   // broadcast to client
   debug('calling socket to broadcast request body to subscribers')
   socket.broadcastPaymentSucceed(body)
-
-  // To avoiding the request timeout on gateway,
-  // we end the response of callback.
-  res.end()
 }
