@@ -13,6 +13,7 @@ router.post('/payment/callback', paymentController.paymentSucceedCallback)
 // protect routes
 router.use(authMiddleware)
 router.post('/payment/qrcode/create', paymentController.qrcodeCreate)
+router.get('/payment/qrcode/billpayment/transactions/:transRef', paymentController.slipVerificationQR30)
 router.get('/users/:username', userController.findByUsername)
 
 module.exports = router

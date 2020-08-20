@@ -74,3 +74,38 @@ module.exports.paymentSucceedCallback = async (req, res) => {
   debug('calling socket to broadcast request body to subscribers')
   socket.broadcastPaymentSucceed(body)
 }
+
+/**
+ * https://developer.scb/#/documents/api-reference-index/qr-payments/get-billpayment-transactions.html
+ *
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ */
+module.exports.slipVerificationQR30 = async (req, res) => {
+  const reqHeaders = req.headers
+  const reqParams = req.params
+  const { transRef } = reqParams
+  const reqQuery = req.query
+
+  try {
+    debug(
+      `Got a response from GET /partners/sandbox/v1/payment/billpayment/transactions/${transRef}?sendingBank=${reqQuery.sendingBank}`
+    )
+    const scbAPIResponse = await scbAPIInstance.get(
+      `/partners/sandbox/v1/payment/billpayment/transactions/${transRef}`,
+      {
+        params: { ...reqQuery },
+        headers: {
+          requestUId: uuidv4(),
+          authorization: reqHeaders.authorization,
+        },
+      }
+    )
+    const responseData = scbAPIResponse.data
+    res.status(scbAPIResponse.status).send({ ...responseData })
+  } catch (err) {
+    debug('An error occurs', err)
+    const response = err.response
+    res.status(response.status || 500).send({ ...response.data })
+  }
+}
