@@ -89,17 +89,17 @@ module.exports.slipVerificationQR30 = async (req, res) => {
   const reqQuery = req.query
 
   try {
+    const debugQueryStr = querystring.stringify(reqQuery)
     debug(
-      `GET /partners/sandbox/v1/payment/billpayment/transactions/${transRef}?${querystring.stringify(
-        reqQuery
-      )}`
+      `GET /partners/sandbox/v1/payment/billpayment/transactions/${transRef}${
+        debugQueryStr.length > 0 ? `?${querystring.stringify(reqQuery)}` : ''
+      }}`
     )
     const scbAPIResponse = await scbAPIInstance.get(
       `/partners/sandbox/v1/payment/billpayment/transactions/${transRef}`,
       {
         params: {
-          sendingBank: '014',
-          ...reqQuery, // in case of the client want to change the query, this will override the sending bank
+          sendingBank: reqQuery.sendingBank || '014', // in case of the client want to change the query, this will override the sending bank
         },
         headers: {
           requestUId: uuidv4(),
