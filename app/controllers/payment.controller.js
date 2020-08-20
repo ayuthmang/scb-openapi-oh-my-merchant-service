@@ -1,3 +1,4 @@
+const querystring = require('querystring')
 const { v4: uuidv4 } = require('uuid')
 const debug = require('debug')(
   'scb-openapi-oh-my-merchant-service:payment.controller'
@@ -89,23 +90,34 @@ module.exports.slipVerificationQR30 = async (req, res) => {
 
   try {
     debug(
-      `Got a response from GET /partners/sandbox/v1/payment/billpayment/transactions/${transRef}?sendingBank=${reqQuery.sendingBank}`
+      `GET /partners/sandbox/v1/payment/billpayment/transactions/${transRef}?${querystring.stringify(
+        reqQuery
+      )}`
     )
     const scbAPIResponse = await scbAPIInstance.get(
       `/partners/sandbox/v1/payment/billpayment/transactions/${transRef}`,
       {
-        params: { ...reqQuery },
+        params: {
+          sendingBank: '014',
+          ...reqQuery, // in case of the client want to change the query, this will override the sending bank
+        },
         headers: {
           requestUId: uuidv4(),
           authorization: reqHeaders.authorization,
         },
       }
     )
+
+    debug(
+      `Got a response from GET /partners/sandbox/v1/payment/billpayment/transactions/${transRef}?${querystring.stringify(
+        reqQuery
+      )}`
+    )
     const responseData = scbAPIResponse.data
     res.status(scbAPIResponse.status).send({ ...responseData })
   } catch (err) {
     debug('An error occurs', err)
     const response = err.response
-    res.status(response.status || 500).send({ ...response.data })
+    res.status(response.status).send({ ...response.data })
   }
 }
