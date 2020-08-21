@@ -4,7 +4,10 @@ const debug = require('debug')(
 )
 
 /**
- * Just verify the if the request have the 'Authorization' field and starts with 'Bearer' else reject all.
+ * This is just an example of how to implements middleware for verifying request.
+ *
+ * This middleware just verify a request that must have an 'Authorization' field in the request header
+ * and must starts with 'Bearer' will be passed, else rejected all.
  *
  * @param {Express.Request} req
  * @param {Express.Response} res
@@ -16,10 +19,9 @@ const authMiddleware = (req, res, next) => {
     typeof req.header('authorization') === 'string' &&
     req.header('authorization').startsWith('Bearer')
   ) {
-    // CAUTION! This is just a quick move.
     // Since we're not store any data in this service.
     // In production, you might be verify some genearted token before going through next middlewares.
-    next() // allows to go to next route.
+    next() // Verified, allows to go to next route.
     return
   }
 
