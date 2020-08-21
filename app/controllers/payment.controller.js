@@ -9,8 +9,6 @@ const scbAPIInstance = require('../utils/scb-api.instance')
 const scbAPIConfig = require('../../config/scb-api.config')
 
 /**
- * TBD:
- *
  * @param {Express.Request} req
  * @param {Express.Response} res
  */
@@ -46,7 +44,7 @@ module.exports.qrcodeCreate = async (req, res) => {
     const responseData = scbAPIResponse.data
     res.status(scbAPIResponse.status).send({ ...responseData })
 
-    // in case of you wanna respond with image
+    // In case of you wanna respond with image
     // res.type('png').status(200).end(Buffer.from(qrImage, 'base64'))
   } catch (err) {
     debug('An error occurs', err)

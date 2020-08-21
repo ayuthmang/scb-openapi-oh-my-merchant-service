@@ -7,7 +7,6 @@ const debug = require('debug')(
 const { authorizer } = require('../services/auth.service')
 const scbAPIInstance = require('../utils/scb-api.instance')
 const scbAPIConfig = require('../../config/scb-api.config')
-const { findByUsername } = require('./user.controller')
 const { findByEmail } = require('../services/user.service')
 
 module.exports.login = async (req, res) => {
