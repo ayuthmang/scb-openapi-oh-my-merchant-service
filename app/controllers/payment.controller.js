@@ -1,5 +1,6 @@
 const querystring = require('querystring')
 const { v4: uuidv4 } = require('uuid')
+const moment = require('moment')
 const debug = require('debug')(
   'scb-openapi-oh-my-merchant-service:payment.controller'
 )
@@ -117,5 +118,52 @@ module.exports.slipVerificationQR30 = async (req, res) => {
     debug('An error occurs', err)
     const response = err.response
     res.status(response.status).send({ ...response.data })
+  }
+}
+
+/**
+ * B Scan C Payment: https://developer.scb/#/documents/documentation/qr-payment/thai-qr.html
+ *
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ */
+module.exports.BScanCPayment = async (req, res, next) => {
+  debug('BScanCPayment')
+  const reqHeaders = req.headers
+  const { qrData, transactionAmount } = req.body
+
+  try {
+    debug('POST to /partners/sandbox/v1/payment/merchant/rtp/confirm')
+    // Since we're not store any data in the service, we just generated unique id from YYYY MM DD HH mm ss
+    const aUniqueServiceTransId = `${moment().format('YYYYMMDDHHmmss')}ABCDEF`
+    const aUniquePartnerTransactionId = `${scbAPIConfig.BILLER_ID}${aUniqueServiceTransId}`
+    const scbAPIResponse = await scbAPIInstance.post(
+      '/partners/sandbox/v1/payment/merchant/rtp/confirm',
+      {
+        qrData: qrData,
+        payeeBillerId: scbAPIConfig.BILLER_ID,
+        transactionAmount: transactionAmount,
+        reference1: 'ABCDEFGHI',
+        partnerTransactionId: aUniquePartnerTransactionId,
+      },
+      {
+        headers: {
+          requestUId: uuidv4(),
+          authorization: reqHeaders.authorization,
+        },
+      }
+    )
+
+    debug('Receive response from POST /partners/sandbox/v1/payment/merchant/rtp/confirm')
+    const responseData = scbAPIResponse.data
+    res.status(scbAPIResponse.status).send({ ...responseData })
+  } catch (err) {
+    if (err.isAxiosError) {
+      debug('An error occurs', err)
+      const response = err.response
+      res.status(response.status).send({ ...response.data })
+      return
+    }
+    next(err)
   }
 }

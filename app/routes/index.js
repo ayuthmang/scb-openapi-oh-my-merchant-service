@@ -17,6 +17,7 @@ router.get(
   '/payment/qrcode/billpayment/transactions/:transRef',
   paymentController.slipVerificationQR30
 )
+router.post('/payment/merchant/rtp/confirm', paymentController.BScanCPayment)
 router.get('/users/:username', userController.findByUsername)
 
 module.exports = router
