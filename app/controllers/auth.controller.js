@@ -11,7 +11,7 @@ const { findByEmail } = require('../services/user.service')
 
 module.exports.login = async (req, res) => {
   // TODO: validate request body
-  debug('Got a request body from client')
+  debug('Receive a POST request body from client')
   const { email, password } = req.body
   if (!authorizer(email, password)) {
     res.status(HttpStatus.UNAUTHORIZED).send({
@@ -37,7 +37,7 @@ module.exports.login = async (req, res) => {
         },
       }
     )
-    debug('Got a response data from /partners/sandbox/v1/oauth/token')
+    debug('Receive a response data from /partners/sandbox/v1/oauth/token')
     const responseData = scbAPIResponse.data
     debug('Send all field data back to client')
     const user = findByEmail(email)

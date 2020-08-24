@@ -14,7 +14,7 @@ const scbAPIConfig = require('../../config/scb-api.config')
  * @param {Express.Response} res
  */
 module.exports.qrcodeCreate = async (req, res) => {
-  debug('Got a POST request from client')
+  debug('Receive a POST request from client')
   const reqHeaders = req.headers // we surely have an authorization header
   const reqBody = req.body
 
@@ -40,7 +40,7 @@ module.exports.qrcodeCreate = async (req, res) => {
       }
     )
 
-    debug('Got a response from POST /partners/sandbox/v1/payment/qrcode/create')
+    debug('Receive a response from POST /partners/sandbox/v1/payment/qrcode/create')
     // const { qrRawData, qrImage } = scbAPIResponse.data.data
     const responseData = scbAPIResponse.data
     res.status(scbAPIResponse.status).send({ ...responseData })
@@ -62,16 +62,16 @@ module.exports.qrcodeCreate = async (req, res) => {
  */
 module.exports.paymentSucceedCallback = async (req, res) => {
   // received body from scb api
-  debug('received request from scb api')
+  debug('Received request from scb api')
   const body = req.body
 
   // To avoiding the request timeout on the gateway, we end the response of callback.
   // We need to respond that we're done for you.
-  debug('ending response from scb api payment succeed callback')
+  debug('Ending response from scb api payment succeed callback')
   res.end()
 
   // broadcast to client
-  debug('calling socket to broadcast request body to subscribers')
+  debug('Calling socket to broadcast request body to subscribers')
   socket.broadcastPaymentSucceed(body)
 }
 
