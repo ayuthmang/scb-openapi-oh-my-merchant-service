@@ -1,4 +1,4 @@
-oh-my-merchant-service
+# oh-my-merchant-service
 
 ## What is this project?
 
@@ -8,6 +8,8 @@ This is just a POC of the service that using the [SCB Open Banking API Document]
 - Create a qrcode for payment (C Scan B).
 - Slip Verification.
 - B Scan C payment.
+
+We recommended to using with [Somjai Application](https://github.com/iamgique/somjai-application).
 
 The project structure inspired by rails.
 
