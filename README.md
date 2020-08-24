@@ -31,7 +31,7 @@ To start, just copy and `.env.example` to `.env` and change the field that has p
 ```
 # Application
 SCB_API_KEY=<Your API KEY>
-SCB_API_SECRET=<Your API SECRET
+SCB_API_SECRET=<Your API SECRET>
 SCB_API_BASE_URL=https://api-sandbox.partners.scb # No need to change
 
 # Biller Information
@@ -65,7 +65,6 @@ In the demonstration, we are using the [Heroku](https://www.heroku.com/) to depl
 In order to use project in production, we have many concerns, for example some request body validation, validate token, and database to stores a transaction id, token. You'll need to put some effort to make it ready to use in production.
 
 I recommended to read the [Futher reading](#Futher-reading).
-
 
 ## Futher reading
 
