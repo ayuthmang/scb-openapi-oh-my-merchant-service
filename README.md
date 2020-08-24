@@ -1,9 +1,13 @@
 oh-my-merchant-service
 
-## โปรเจคนี้คืออะไร
+## What is this project?
 
-This is just an POC of the service that connected to
-โปรเจคนี้เป็นตัวอย่างการสร้าง service เพื่อใช้ตอ่กับ SCB Open Banking API
+This is just a POC of the service that using the [SCB Open Banking API Document](https://developer.scb/) to 
+
+- Login and get the token.
+- Create a qrcode for payment (C Scan B).
+- Slip Verification.
+- B Scan C payment.
 
 The project structure inspired by rails.
 
@@ -76,7 +80,6 @@ I recommended to read the [Futher reading](#Futher-reading).
 
 ### Socket.io
 - [Emit cheatsheet](https://socket.io/docs/emit-cheatsheet/)
-
 
 ---
 
