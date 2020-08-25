@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "0ef9e579-14f3-4a80-9eb7-31c29a46348d",
+		"name": "oh-my-merchant-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"<Your Email>\",\n    \"password\": \"<Your Password>\"\n}   ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/auth/login",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/payment/qrcode/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <Your Access Token>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": \"<Your Amount>\",\n    \"ref3\": \"<Your Ref3>\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/payment/qrcode/create",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"payment",
+						"qrcode",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/{username}",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <Your Access Token>",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/users/{username}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"users",
+						"{username}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/payment/qrcode/billpayment/transactions/{transRef}?param",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <Your Access Token>",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/payment/qrcode/billpayment/transactions/:transRef",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"payment",
+						"qrcode",
+						"billpayment",
+						"transactions",
+						":transRef"
+					],
+					"query": [
+						{
+							"key": "sendingBank",
+							"value": "014",
+							"description": "If you want to override thsi field",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "transRef",
+							"value": "<Your transRef>"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/payment/merchant/rtp/confirm",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <Your Access Token>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"qrData\": \"<Your qrData>\",\n    \"transactionAmount\": \"<Your transactionAmount>\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/payment/merchant/rtp/confirm",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"payment",
+						"merchant",
+						"rtp",
+						"confirm"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2cf9f41a-44fb-4103-b957-0a6c96fa9d72",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "80cc756c-d951-457b-ab0a-04c1c1314c8f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

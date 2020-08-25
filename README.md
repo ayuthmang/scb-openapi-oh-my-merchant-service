@@ -2,7 +2,7 @@
 
 ## What is this project?
 
-This is just a POC of the service that using the [SCB Open Banking API Document](https://developer.scb/) to 
+This is just a POC of the service that using the [SCB Open Banking API Document](https://developer.scb/) to
 
 - Login and get the token.
 - Create a qrcode for payment (C Scan B).
@@ -50,6 +50,10 @@ $ yarn dev
 $ npm run dev
 ```
 
+### Postman collection
+
+Postman collection available here, [docs/postman](./docs/postman)
+
 ### Start server
 
 ```bash
@@ -69,10 +73,12 @@ I recommended to read the [Futher reading](#Futher-reading).
 ## Futher reading
 
 ### Express
+
 - [Production Best Practices: Security](https://expressjs.com/en/advanced/best-practice-security.html)
 - [Production best practices: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html)
 
 ### SCB Open Banking API
+
 - [SCB Open Banking API Document](https://developer.scb/)
 - [สร้าง Payment Chatbot ด้วย SCB Open Banking API (Part 1 : มาส่อง API ของธนาคารไทยพาณิชย์ไปพร้อมกัน)](https://medium.com/@aijo/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-payment-chatbot-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-scb-open-banking-api-part-1-ac1095e76ec9)
 - [สร้าง Payment Chatbot ด้วย SCB Open Banking API (Part 2 : เตรียม Chatbot ของเราให้พร้อม)](https://medium.com/@aijo/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-payment-chatbot-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-scb-open-banking-api-part-2-2dc3cc20c83b)
@@ -80,6 +86,7 @@ I recommended to read the [Futher reading](#Futher-reading).
 - [สร้าง Payment Chatbot ด้วย SCB Open Banking API (Part 4 : ส่ง Push Message จาก Payment Confirmation)](https://medium.com/@aijo/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-payment-chatbot-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-scb-open-banking-api-part-4-a84034306ee1)
 
 ### Socket.io
+
 - [Emit cheatsheet](https://socket.io/docs/emit-cheatsheet/)
 
 ---
