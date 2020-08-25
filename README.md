@@ -2,6 +2,8 @@
 
 ## What is this project?
 
+![diagram](docs/draw.io/diagram.png)
+
 This is just a POC of the service that using the [SCB Open Banking API Document](https://developer.scb/) to
 
 - Login and get the token.
@@ -50,10 +52,6 @@ $ yarn dev
 $ npm run dev
 ```
 
-### Postman collection
-
-Postman collection available here, [docs/postman](./docs/postman)
-
 ### Start server
 
 ```bash
@@ -69,6 +67,10 @@ In the demonstration, we are using the [Heroku](https://www.heroku.com/) to depl
 In order to use project in production, we have many concerns, for example some request body validation, validate token, and database to stores a transaction id, token. You'll need to put some effort to make it ready to use in production.
 
 I recommended to read the [Futher reading](#Futher-reading).
+
+## Postman collection
+
+Postman collection available here, [docs/postman](./docs/postman)
 
 ## Futher reading
 
