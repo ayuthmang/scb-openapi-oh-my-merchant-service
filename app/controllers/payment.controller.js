@@ -40,12 +40,14 @@ module.exports.qrcodeCreate = async (req, res) => {
       }
     )
 
-    debug('Receive a response from POST /partners/sandbox/v1/payment/qrcode/create')
-    // const { qrRawData, qrImage } = scbAPIResponse.data.data
+    debug(
+      'Receive a response from POST /partners/sandbox/v1/payment/qrcode/create'
+    )
     const responseData = scbAPIResponse.data
     res.status(scbAPIResponse.status).send({ ...responseData })
 
     // In case of you wanna respond with image
+    // const { qrRawData, qrImage } = scbAPIResponse.data.data
     // res.type('png').status(200).end(Buffer.from(qrImage, 'base64'))
   } catch (err) {
     debug('An error occurs', err)
@@ -154,7 +156,9 @@ module.exports.BScanCPayment = async (req, res, next) => {
       }
     )
 
-    debug('Receive response from POST /partners/sandbox/v1/payment/merchant/rtp/confirm')
+    debug(
+      'Receive response from POST /partners/sandbox/v1/payment/merchant/rtp/confirm'
+    )
     const responseData = scbAPIResponse.data
     res.status(scbAPIResponse.status).send({ ...responseData })
   } catch (err) {

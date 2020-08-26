@@ -10,7 +10,6 @@ const scbAPIConfig = require('../../config/scb-api.config')
 const { findByEmail } = require('../services/user.service')
 
 module.exports.login = async (req, res) => {
-  // TODO: validate request body
   debug('Receive a POST request body from client')
   const { email, password } = req.body
   if (!authorizer(email, password)) {
