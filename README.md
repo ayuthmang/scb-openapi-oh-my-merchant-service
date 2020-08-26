@@ -13,7 +13,7 @@ This is just a POC of the service that using the [SCB Open Banking API Document]
 
 We recommended to using with [Somjai Application](https://github.com/iamgique/somjai-application).
 
-The project structure inspired by rails.
+The project structure was inspired by rails.
 
 ## System Requirements
 
@@ -21,12 +21,12 @@ The project structure inspired by rails.
 
 ## Setup and config
 
-In order to start the system, you need to create an account and the app in [SCB Open Banking API Document](https://developer.scb/), because we need a serveral fields such as `API_KEY`, `API_SECRET`, `BILLER_ID`, `MERCHANT_ID`, `MERCHANT_TERMINAL_ID`.
+To start the system, you need to create an account and the app in [SCB Open Banking API Document](https://developer.scb/), because we need serveral fields such as `API_KEY`, `API_SECRET`, `BILLER_ID`, `MERCHANT_ID`, `MERCHANT_TERMINAL_ID`.
 
 ### Config the service
 
-After we registred an account and created an application in https://developer.scb/.
-We'll need to config serveral fields that we mention above.
+After we registered an account and created an application in https://developer.scb/.
+We'll need to config several fields that we mention above.
 
 To start, just copy and `.env.example` to `.env` and change the field that has prefix `<Your ...>` to yours.
 
@@ -44,7 +44,9 @@ SCB_MERCHANT_ID=<Your Merchant ID>
 SCB_MERCHANT_TERMINAL_ID=<Your Terminal ID>
 ```
 
-### Start development server
+### Start a development server
+
+The development server is including the `debug` log that we do not include in production mode.
 
 ```bash
 $ yarn dev
@@ -52,7 +54,7 @@ $ yarn dev
 $ npm run dev
 ```
 
-### Start server
+### Start a server
 
 ```bash
 $ yarn start
@@ -60,19 +62,19 @@ $ yarn start
 $ npm run start
 ```
 
-## Produciton Deployment
+## Production deployment
 
 In the demonstration, we are using the [Heroku](https://www.heroku.com/) to deploy and do CI/CD.
 
-In order to use project in production, we have many concerns, for example some request body validation, validate token, and database to stores a transaction id, token. You'll need to put some effort to make it ready to use in production.
+To use project in production, we have many concerns, for example some request body validation, validate token, and database to stores a transaction id, token. You'll need to put some effort to make it ready to use in production.
 
-I recommended to read the [Futher reading](#Futher-reading).
+We recommended reading the [Futher reading](#Futher-reading) section.
 
 ## Postman collection
 
 Postman collection available here, [docs/postman](./docs/postman)
 
-## Futher reading
+## Further reading
 
 ### Express
 
