@@ -6,6 +6,8 @@ const debug = require('debug')(
 const userService = require('../services/user.service')
 
 module.exports.findByUsername = (req, res) => {
+  debug('findByUsername')
+
   const usernameParam = req.params.username
   if (!usernameParam) {
     res.status(HttpStatus.NOT_FOUND).send({

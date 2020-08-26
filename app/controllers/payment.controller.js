@@ -10,10 +10,18 @@ const scbAPIInstance = require('../utils/scb-api.instance')
 const scbAPIConfig = require('../../config/scb-api.config')
 
 /**
+ * Create a qr code for C scan B payment.
+ *
+ * Further reading
+ * - https://developer.scb/#/documents/documentation/qr-payment/thai-qr.html.
+ * - https://developer.scb/#/documents/api-reference-index/qr-payments/post-qrcode-create.html.
+ *
  * @param {Express.Request} req
  * @param {Express.Response} res
  */
 module.exports.qrcodeCreate = async (req, res) => {
+  debug('qrcodeCreate')
+
   debug('Receive a POST request from client')
   const reqHeaders = req.headers // we surely have an authorization header
   const reqBody = req.body
@@ -58,11 +66,14 @@ module.exports.qrcodeCreate = async (req, res) => {
 
 /**
  * Handle payment callback from scb api and pass forward all through client.
+ * To receives the callback, we need to set confirmation end point in Merchant Profile.
  *
  * @param {Express.Request} req
  * @param {Express.Response} res
  */
 module.exports.paymentSucceedCallback = async (req, res) => {
+  debug('paymentSucceedCallback')
+
   // received body from scb api
   debug('Received request from scb api')
   const body = req.body
@@ -78,7 +89,10 @@ module.exports.paymentSucceedCallback = async (req, res) => {
 }
 
 /**
- * https://developer.scb/#/documents/api-reference-index/qr-payments/get-billpayment-transactions.html
+ *
+ * Further reading
+ * - https://developer.scb/#/documents/documentation/qr-payment/thai-qr.html, in section '3. Slip Verification'.
+ * - https://developer.scb/#/documents/api-reference-index/qr-payments/get-billpayment-transactions.html.
  *
  * @param {Express.Request} req
  * @param {Express.Response} res
@@ -124,7 +138,9 @@ module.exports.slipVerificationQR30 = async (req, res) => {
 }
 
 /**
- * B Scan C Payment: https://developer.scb/#/documents/documentation/qr-payment/thai-qr.html
+ * Further reading
+ * - https://developer.scb/#/documents/documentation/qr-payment/thai-qr.html, in 'B Scan C Payment' section.
+ * - https://developer.scb/#/documents/api-reference-index/qr-payments/post-bscanc-confirm-payment.html.
  *
  * @param {Express.Request} req
  * @param {Express.Response} res

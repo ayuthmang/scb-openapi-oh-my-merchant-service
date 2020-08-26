@@ -15,6 +15,7 @@ const debug = require('debug')(
  */
 const authMiddleware = (req, res, next) => {
   debug('authMiddleware')
+
   if (
     typeof req.header('authorization') === 'string' &&
     req.header('authorization').startsWith('Bearer')
