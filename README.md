@@ -15,7 +15,7 @@ We recommended to using with [Somjai Application](https://github.com/iamgique/so
 
 The project structure was inspired by rails.
 
-## System Requirements
+## System requirements
 
 - Node v12.16.2
 
@@ -92,6 +92,11 @@ Postman collection available here, [docs/postman](./docs/postman)
 ### Socket.io
 
 - [Emit cheatsheet](https://socket.io/docs/emit-cheatsheet/)
+
+
+### Heroku
+
+- [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
 
 ---
 
