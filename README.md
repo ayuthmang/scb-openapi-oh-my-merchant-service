@@ -101,6 +101,7 @@ Postman collection available here, [docs/postman](./docs/postman)
 ### Heroku
 
 - [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
+- [Configuration and Config Vars](https://devcenter.heroku.com/articles/config-vars)
 
 ---
 
