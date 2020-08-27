@@ -6,7 +6,7 @@
 
 This is just a POC of the service that using the [SCB Open Banking API Document](https://developer.scb/) to
 
-- Login and get the token.
+- Login and generate the token.
 - Create a qrcode for payment (C Scan B).
 - Slip Verification.
 - B Scan C payment.
@@ -18,6 +18,11 @@ The project structure was inspired by rails.
 ## System requirements
 
 - Node v12.16.2
+
+## Dev requirements
+
+- [Postman](https://www.postman.com/) - for testing an endpoint.
+- [ngrok](https://ngrok.com/) - for exposing the local service to a public url.
 
 ## Setup and config
 
@@ -92,7 +97,6 @@ Postman collection available here, [docs/postman](./docs/postman)
 ### Socket.io
 
 - [Emit cheatsheet](https://socket.io/docs/emit-cheatsheet/)
-
 
 ### Heroku
 
