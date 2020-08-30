@@ -23,6 +23,7 @@ The project structure was inspired by rails.
 
 - [Postman](https://www.postman.com/) - for testing an endpoint.
 - [ngrok](https://ngrok.com/) - for exposing the local service to a public url.
+- [nvm](https://github.com/nvm-sh/nvm) - for switching between node versions.
 
 ## Setup and config
 
