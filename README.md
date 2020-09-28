@@ -94,6 +94,7 @@ Postman collection available here, [docs/postman](./docs/postman)
 - [สร้าง Payment Chatbot ด้วย SCB Open Banking API (Part 2 : เตรียม Chatbot ของเราให้พร้อม)](https://medium.com/@aijo/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-payment-chatbot-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-scb-open-banking-api-part-2-2dc3cc20c83b)
 - [สร้าง Payment Chatbot ด้วย SCB Open Banking API (Part 3 : เขียน Fulfillment เพื่อสร้าง Payment Deeplink)](https://medium.com/@aijo/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-payment-chatbot-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-scb-open-banking-api-part-3-161bdc0aa64b)
 - [สร้าง Payment Chatbot ด้วย SCB Open Banking API (Part 4 : ส่ง Push Message จาก Payment Confirmation)](https://medium.com/@aijo/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-payment-chatbot-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-scb-open-banking-api-part-4-a84034306ee1)
+- Mostly response code is copied from [Generic Response Codes](https://developer.scb/#/documents/api-reference-index/references/generic-response-codes.html.)
 
 ### Socket.io
 
