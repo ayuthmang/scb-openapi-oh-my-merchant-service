@@ -22,11 +22,11 @@ const authMiddleware = (req, res, next) => {
   ) {
     // Since we're not store any data in this service.
     // In production, you might be verify some genearted token before going through next middlewares.
-    next() // Verified, allows to go to next route.
-    return
+    return next() // Verified, allows to go to next route.
   }
 
-  res.status(HttpStatus.UNAUTHORIZED).send({
+  res.status(HttpStatus.UNAUTHORIZED)
+  res.send({
     status: {
       code: 9500,
       description: 'Invalid authorization credentials',
