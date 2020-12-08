@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "dev": "cross-env DEBUG=scb-openapi-oh-my-merchant-service:* nodemon --exec 'npm start'",
     "test": "jest --watchAll=true",
-    "test:coverage": "jest --collectCoverage"
+    "test:watch": "jest --watchAll=true",
+    "test:coverage": "jest --watchAll=false --collectCoverage"
   },
   "dependencies": {
     "axios": "^0.19.2",
