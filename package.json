@@ -18,7 +18,7 @@
     "express-basic-auth": "^1.2.0",
     "http-errors": "^1.8.0",
     "http-status-codes": "^1.4.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "morgan": "^1.10.0",
     "safe-compare": "^1.1.4",
     "socket.io": "^2.3.0",
