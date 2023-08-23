@@ -4,14 +4,14 @@
 
 ![diagram](docs/draw.io/diagram.png)
 
-This is just a POC of the service that using the [SCB Open Banking API Document](https://developer.scb/) to
+This is just a POC of the service that uses the [SCB Open Banking API Document](https://developer.scb/) to
 
 - Login and generate the token.
-- Create a qrcode for payment (C Scan B).
+- Create a QR code for payment (C Scan B).
 - Slip Verification.
 - B Scan C payment.
 
-We recommended to using with [Somjai Application](https://github.com/iamgique/somjai-application).
+We recommended using with [Somjai Application](https://github.com/iamgique/somjai-application).
 
 The project structure was inspired by rails.
 
@@ -22,21 +22,21 @@ The project structure was inspired by rails.
 ## Dev requirements
 
 - [Postman](https://www.postman.com/) - for testing an endpoint.
-- [ngrok](https://ngrok.com/) - for exposing the local service to a public url.
+- [ngrok](https://ngrok.com/) - for exposing the local service to a public URL.
 - [nvm](https://github.com/nvm-sh/nvm) - for switching between node versions.
 
 ## Setup and config
 
-To start the system, you need to create an account and the app in [SCB Open Banking API Document](https://developer.scb/), because we need serveral fields such as `API_KEY`, `API_SECRET`, `BILLER_ID`, `MERCHANT_ID`, `MERCHANT_TERMINAL_ID`.
+To start the system, you need to create an account and the app in [SCB Open Banking API Document](https://developer.scb/), because we need several fields such as `API_KEY`, `API_SECRET`, `BILLER_ID`, `MERCHANT_ID`, `MERCHANT_TERMINAL_ID`.
 
 ### Config the service
 
 After we registered an account and created an application in https://developer.scb/.
 We'll need to config several fields that we mention above.
 
-To start, just copy and `.env.example` to `.env` and change the field that has prefix `<Your ...>` to yours.
+To start, just copy `.env.example` to `.env` and change the field that has the prefix `<Your ...>` to yours.
 
-```
+```bash
 # Application
 SCB_API_KEY=<Your API KEY>
 SCB_API_SECRET=<Your API SECRET>
@@ -72,7 +72,8 @@ $ npm run start
 
 In the demonstration, we are using the [Heroku](https://www.heroku.com/) to deploy and do CI/CD.
 
-To use project in production, we have many concerns, for example some request body validation, validate token, and database to stores a transaction id, token. You'll need to put some effort to make it ready to use in production.
+To use a project in production, we have many concerns, for example, some request body validation, validation token, and database to store a transaction id or token.
+You'll need to put some effort to make it ready to use in production.
 
 We recommended reading the [Futher reading](#Futher-reading) section.
 
@@ -94,7 +95,7 @@ Postman collection available here, [docs/postman](./docs/postman)
 - [สร้าง Payment Chatbot ด้วย SCB Open Banking API (Part 2 : เตรียม Chatbot ของเราให้พร้อม)](https://medium.com/@aijo/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-payment-chatbot-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-scb-open-banking-api-part-2-2dc3cc20c83b)
 - [สร้าง Payment Chatbot ด้วย SCB Open Banking API (Part 3 : เขียน Fulfillment เพื่อสร้าง Payment Deeplink)](https://medium.com/@aijo/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-payment-chatbot-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-scb-open-banking-api-part-3-161bdc0aa64b)
 - [สร้าง Payment Chatbot ด้วย SCB Open Banking API (Part 4 : ส่ง Push Message จาก Payment Confirmation)](https://medium.com/@aijo/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-payment-chatbot-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-scb-open-banking-api-part-4-a84034306ee1)
-- Mostly response codes are copied from [Generic Response Codes](https://developer.scb/#/documents/api-reference-index/references/generic-response-codes.html.)
+- Most response codes are copied from [Generic Response Codes](https://developer.scb/#/documents/api-reference-index/references/generic-response-codes.html.)
 
 ### Socket.io
 
