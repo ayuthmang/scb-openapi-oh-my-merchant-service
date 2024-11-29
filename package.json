@@ -10,7 +10,7 @@
     "test:coverage": "jest --watchAll=false --collectCoverage"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cross-env": "^7.0.2",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
