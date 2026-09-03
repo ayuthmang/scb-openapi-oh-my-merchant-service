@@ -12,13 +12,24 @@ router.post('/auth/login', authController.login)
 router.post('/payment/callback', paymentController.paymentSucceedCallback)
 
 // protected routes
-router.use(authMiddleware)
-router.post('/payment/qrcode/create', paymentController.qrcodeCreate)
+// `router.use(authMiddleware)` would also intercept unmatched paths, so every
+// unknown route answered 401 and the 404 handler was unreachable. Mounting the
+// middleware per route keeps the same protection without swallowing the rest.
+router.post(
+  '/payment/qrcode/create',
+  authMiddleware,
+  paymentController.qrcodeCreate
+)
 router.get(
   '/payment/qrcode/billpayment/transactions/:transRef',
+  authMiddleware,
   paymentController.slipVerificationQR30
 )
-router.post('/payment/merchant/rtp/confirm', paymentController.BScanCPayment)
-router.get('/users/:username', userController.findByUsername)
+router.post(
+  '/payment/merchant/rtp/confirm',
+  authMiddleware,
+  paymentController.BScanCPayment
+)
+router.get('/users/:username', authMiddleware, userController.findByUsername)
 
 module.exports = router

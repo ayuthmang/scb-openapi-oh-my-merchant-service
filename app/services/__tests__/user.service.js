@@ -1,8 +1,4 @@
-const {
-  findByEmail,
-  findByUsername,
-} = require('../../app/services/user.service')
-const users = [
+const mockUsers = [
   {
     id: 1,
     email: 'john.validEmail@example.com',
@@ -10,40 +6,26 @@ const users = [
     password: 'aValidPassword',
   },
 ]
-jest.mock('../../app/data/users.json', () => users)
+jest.mock('../../data/users.json', () => mockUsers)
+
+const { findByEmail, findByUsername } = require('../user.service')
 
 describe('findByEmail', () => {
-  it('should returns user when email is correct', () => {
-    const email = 'john.validEmail@example.com'
-
-    const actual = findByEmail(email)
-
-    expect(actual).toEqual(users[0])
+  it('should return the user when the email is correct', () => {
+    expect(findByEmail('john.validEmail@example.com')).toEqual(mockUsers[0])
   })
 
-  it('should returns undefined when email is not found', () => {
-    const email = 'xxx@xxx.com'
-
-    const actual = findByEmail(email)
-
-    expect(actual).toBeUndefined()
+  it('should return undefined when the email is not found', () => {
+    expect(findByEmail('xxx@xxx.com')).toBeUndefined()
   })
 })
 
 describe('findByUsername', () => {
-  it('should returns user when username is correct', () => {
-    const username = 'john'
-
-    const actual = findByUsername(username)
-
-    expect(actual).toEqual(users[0])
+  it('should return the user when the username is correct', () => {
+    expect(findByUsername('john')).toEqual(mockUsers[0])
   })
 
-  it('should returns user when username is not found', () => {
-    const username = 'jane'
-
-    const actual = findByUsername(username)
-
-    expect(actual).toBeUndefined()
+  it('should return undefined when the username is not found', () => {
+    expect(findByUsername('jane')).toBeUndefined()
   })
 })

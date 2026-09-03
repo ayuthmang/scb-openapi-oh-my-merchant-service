@@ -1,5 +1,4 @@
-const { authorizer } = require('../auth.service')
-const users = [
+const mockUsers = [
   {
     id: 1,
     email: 'john.validEmail@example.com',
@@ -7,17 +6,22 @@ const users = [
     password: 'aValidPassword',
   },
 ]
-jest.mock('../../app/data/users.json', () => users)
+// The path is relative to this file, and `jest.mock` is hoisted above the
+// `const` above, so the factory may only close over `mock`-prefixed names.
+jest.mock('../../data/users.json', () => mockUsers)
 
-test('should returns true when user is matched', () => {
-  expect(
-    authorizer('john.validEmail@example.com', 'aValidPassword')
-  ).toBeTruthy()
+const { authorizer } = require('../auth.service')
+
+test('should return true when the user matches', () => {
+  expect(authorizer('john.validEmail@example.com', 'aValidPassword')).toBe(true)
 })
 
-test('should returns false when user is not matched', () => {
-  expect(
-    authorizer('john.validEmail@example.com', 'anInvalidPassword')
-  ).toBeFalsy()
-  expect(authorizer('john', 'anInvalidPassword')).toBeFalsy()
+test('should return false when the password does not match', () => {
+  expect(authorizer('john.validEmail@example.com', 'anInvalidPassword')).toBe(
+    false
+  )
+})
+
+test('should return false when the email is not registered', () => {
+  expect(authorizer('john', 'anInvalidPassword')).toBe(false)
 })

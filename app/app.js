@@ -17,12 +17,20 @@ app.use(routes)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(HttpStatus.BAD_REQUEST))
+  next(createError(HttpStatus.NOT_FOUND))
 })
 
 // error handler
 app.use(function (err, req, res, next) {
+  // Once the response has started, only the default handler can close it.
+  if (res.headersSent) {
+    return next(err)
+  }
+
   const isEnvProduction = process.env.NODE_ENV === 'production'
+  const status =
+    err.status || err.statusCode || HttpStatus.INTERNAL_SERVER_ERROR
+
   // default error
   const response = {
     status: {
@@ -30,11 +38,19 @@ app.use(function (err, req, res, next) {
       description: 'Service not available, or currently under maintenance',
     },
   }
+
+  if (status === HttpStatus.NOT_FOUND) {
+    response.status = {
+      code: 404, // TBD: swap in the matching SCB generic response code
+      description: 'Resource not found',
+    }
+  }
+
   // set locals, only providing error in development
   if (!isEnvProduction) {
     response['error'] = err.stack
   }
-  res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(response)
+  res.status(status).send(response)
 })
 
 module.exports = app
