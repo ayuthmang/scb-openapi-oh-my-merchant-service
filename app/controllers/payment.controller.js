@@ -8,6 +8,7 @@ const debug = require('debug')(
 const socket = require('../../lib/socket')
 const scbAPIInstance = require('../utils/scb-api.instance')
 const scbAPIConfig = require('../../config/scb-api.config')
+const sendUpstreamError = require('../utils/send-upstream-error')
 
 /**
  * Create a qr code for C scan B payment.
@@ -58,9 +59,8 @@ module.exports.qrcodeCreate = async (req, res) => {
     // const { qrRawData, qrImage } = scbAPIResponse.data.data
     // res.type('png').status(200).end(Buffer.from(qrImage, 'base64'))
   } catch (err) {
-    debug('An error occurs', err)
-    const response = err.response
-    res.status(response.status).send({ ...response.data })
+    debug('An error occurred', err)
+    sendUpstreamError(res, err)
   }
 }
 
@@ -84,8 +84,14 @@ module.exports.paymentSucceedCallback = async (req, res) => {
   res.end()
 
   // broadcast to client
-  debug('Calling socket to broadcast request body to subscribers')
-  socket.broadcastPaymentSucceed(body)
+  debug('Calling socket to broadcast the request body to subscribers')
+  // The response has already ended, so a throw here cannot be reported to
+  // the caller and would surface as an unhandled error instead.
+  try {
+    socket.broadcastPaymentSucceed(body)
+  } catch (err) {
+    debug('Failed to broadcast payment-succeed', err)
+  }
 }
 
 /**
@@ -131,9 +137,8 @@ module.exports.slipVerificationQR30 = async (req, res) => {
     const responseData = scbAPIResponse.data
     res.status(scbAPIResponse.status).send({ ...responseData })
   } catch (err) {
-    debug('An error occurs', err)
-    const response = err.response
-    res.status(response.status).send({ ...response.data })
+    debug('An error occurred', err)
+    sendUpstreamError(res, err)
   }
 }
 
@@ -179,9 +184,8 @@ module.exports.BScanCPayment = async (req, res, next) => {
     res.status(scbAPIResponse.status).send({ ...responseData })
   } catch (err) {
     if (err.isAxiosError) {
-      debug('An error occurs', err)
-      const response = err.response
-      res.status(response.status).send({ ...response.data })
+      debug('An error occurred', err)
+      sendUpstreamError(res, err)
       return
     }
     next(err)

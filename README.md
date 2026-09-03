@@ -17,7 +17,7 @@ The project structure was inspired by rails.
 
 ## System requirements
 
-- Node v12.16.2
+- Node.js 18 or later
 
 ## Dev requirements
 

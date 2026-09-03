@@ -8,6 +8,7 @@ const { authorizer } = require('../services/auth.service')
 const scbAPIInstance = require('../utils/scb-api.instance')
 const scbAPIConfig = require('../../config/scb-api.config')
 const { findByEmail } = require('../services/user.service')
+const sendUpstreamError = require('../utils/send-upstream-error')
 
 module.exports.login = async (req, res) => {
   debug('login')
@@ -51,13 +52,12 @@ module.exports.login = async (req, res) => {
       status: { ...responseData.status },
       data: {
         ...responseData.data,
-        user, // frontend ask for it!
+        user: clonedUser, // the frontend asks for it, minus the password
       },
     }
     res.status(scbAPIResponse.status).send(response)
   } catch (err) {
-    debug('An error occurs', err)
-    const response = err.response
-    res.status(response.status).send({ ...response.data })
+    debug('An error occurred', err)
+    sendUpstreamError(res, err)
   }
 }
