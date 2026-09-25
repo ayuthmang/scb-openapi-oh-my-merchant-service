@@ -68,6 +68,17 @@ $ yarn start
 $ npm run start
 ```
 
+## Running the tests
+
+```bash
+$ yarn test
+# or, failing below 100% coverage as CI does
+$ yarn test:coverage
+```
+
+The suite never contacts SCB: a local fake stands in for the API, so it runs offline and needs no credentials.
+`bin/__tests__/www.js` starts the real server and rehearses the demo end to end, from login to the `payment-succeed` push on Socket.IO.
+
 ## Production deployment
 
 In the demonstration, we are using the [Heroku](https://www.heroku.com/) to deploy and do CI/CD.
