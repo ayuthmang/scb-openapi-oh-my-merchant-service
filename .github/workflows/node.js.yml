@@ -26,4 +26,5 @@ jobs:
           cache: yarn
       # The repository ships a yarn.lock, so install with yarn to honour it.
       - run: yarn install --frozen-lockfile
-      - run: yarn test
+      # Fails the build if any file drops below 100% coverage.
+      - run: yarn test:coverage
